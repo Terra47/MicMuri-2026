@@ -4,23 +4,23 @@ Projeto desenvolvido para a Mostra Científica 2026 do Instituto Murialdo. Simul
 
 ---
 
-## 🚀 Versões
+## Versões
 
 ### v2.0 - 04/03/2026
-- ✨ Museu da Matemática com gráficos 3D (fractais, números primos, constantes)
-- ✨ 5 novos aplicativos: Painel de Controle, Bloco de Notas, Calculadora, Programação, Arcade
-- ✨ Efeitos CRT aprimorados
-- ✨ Boot mais lento e realista (15s)
+- Museu da Matemática com gráficos 3D (fractais, números primos, constantes)
+- 5 novos aplicativos: Painel de Controle, Bloco de Notas, Calculadora, Programação, Arcade
+- Efeitos CRT aprimorados
+- Boot mais lento e realista (15s)
 
 ### v1.0 - 03/03/2026
-- ✨ Sistema base com boot estilo Windows 95
-- ✨ Área de trabalho com ícones e barra de tarefas
-- ✨ Aplicativos: Meu Computador, Windows Explorer, Gerenciador de Tarefas, Sobre
-- ✨ Efeitos CRT básicos
+- Sistema base com boot estilo Windows 95
+- Área de trabalho com ícones e barra de tarefas
+- Aplicativos: Meu Computador, Windows Explorer, Gerenciador de Tarefas, Sobre
+- Efeitos CRT básicos
 
 ---
 
-## 📋 Aplicativos
+## Aplicativos
 
 | App | Descrição |
 |-----|-----------|
@@ -37,13 +37,13 @@ Projeto desenvolvido para a Mostra Científica 2026 do Instituto Murialdo. Simul
 
 ---
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 HTML, CSS, JavaScript, Three.js, Bootstrap
 
 ---
 
-## 🎮 Como usar
+## Como usar
 
 1. Pressione qualquer tecla para ligar
 2. Aguarde o boot (15s)
@@ -53,7 +53,7 @@ HTML, CSS, JavaScript, Three.js, Bootstrap
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 Miguel Nunes Agne (Terra)  
 Instituto Murialdo - Mostra Científica 2026
