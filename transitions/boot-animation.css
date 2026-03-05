@@ -1,4 +1,3 @@
-/* ===== BOOT SCREEN REFINADO ===== */
 .boot-screen {
     position: fixed;
     top: 0;
@@ -87,7 +86,6 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Terminal DOS */
 .dos-terminal {
     width: 100%;
     height: 300px;

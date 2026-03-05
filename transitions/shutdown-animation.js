@@ -1,5 +1,3 @@
-// ===== ANIMAÇÃO DE DESLIGAMENTO =====
-
 class ShutdownAnimation {
     constructor() {
         this.shutdownTime = 3000;
@@ -38,7 +36,6 @@ class ShutdownAnimation {
 
 const shutdownAnimation = new ShutdownAnimation();
 
-// Adiciona estilos
 const style = document.createElement('style');
 style.textContent = `
     .shutdown-overlay {

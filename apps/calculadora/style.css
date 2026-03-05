@@ -141,7 +141,6 @@ body {
     min-height: 20px;
 }
 
-/* Modal de Erro */
 .error-modal {
     position: fixed;
     top: 50%;

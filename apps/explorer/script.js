@@ -1,4 +1,3 @@
-// ===== ESTRUTURA DE PASTAS =====
 const folderStructure = {
     'Área de Trabalho': {
         icon: '🖥️',
@@ -45,7 +44,6 @@ const folderStructure = {
     }
 };
 
-// ===== ELEMENTOS =====
 const folderTree = document.getElementById('folderTree');
 const folderItems = document.getElementById('folderItems');
 const currentFolder = document.getElementById('currentFolder');
@@ -61,17 +59,15 @@ const confirmNo = document.getElementById('confirmNo');
 const largeIcons = document.getElementById('largeIcons');
 const detailsView = document.getElementById('detailsView');
 
-// ===== VARIÁVEIS =====
 let selectedFolder = 'Área de Trabalho';
 let selectedItem = null;
 let isResizing = false;
 let startX = 0;
 let startWidth = 0;
-let currentView = 'icons'; // 'icons' ou 'details'
+let currentView = 'icons';
 const folderTreeElement = document.querySelector('.folder-tree');
 const splitter = document.querySelector('.splitter');
 
-// ===== FUNÇÕES =====
 function showError(message) {
     errorMessage.textContent = message;
     errorModal.classList.remove('hidden');
@@ -198,7 +194,6 @@ function updateStatus(count) {
     diskSpace.textContent = '1,44 GB livres (Disco C:)';
 }
 
-// ===== EVENT LISTENERS =====
 splitter.addEventListener('mousedown', (e) => {
     isResizing = true;
     startX = e.clientX;
@@ -271,7 +266,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', () => {
     createFolderTree();
     loadFolderContents(selectedFolder);

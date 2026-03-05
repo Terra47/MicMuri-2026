@@ -76,7 +76,6 @@ body {
     font-size: 11px;
 }
 
-/* Modais */
 .file-modal, .error-modal {
     position: fixed;
     top: 50%;

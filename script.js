@@ -1,4 +1,3 @@
-// ===== ELEMENTOS =====
 const powerOffScreen = document.getElementById('power-off-screen');
 const bootScreen = document.getElementById('boot-screen');
 const bootProgressBar = document.getElementById('bootProgressBar');
@@ -25,7 +24,6 @@ const maximizeBtn = document.querySelector('.window-maximize');
 const desktopIcons = document.querySelectorAll('.desktop-icon');
 const startItems = document.querySelectorAll('.start-item:not(#shutdownMenuItem)');
 
-// ===== VARIÁVEIS =====
 let isPoweredOn = false;
 let isLoggedIn = false;
 let windowState = 'normal';
@@ -35,7 +33,6 @@ let windowPosition = { x: 100, y: 100 };
 let isDragging = false;
 let dragOffset = { x: 0, y: 0 };
 
-// ===== FUNÇÕES =====
 function powerOn() {
     if (isPoweredOn) return;
     isPoweredOn = true;
@@ -136,7 +133,6 @@ function openApp(appName) {
 }
 
 function addToTaskbar(title) {
-    // Remove se já existir
     const existing = document.querySelector(`.taskbar-app[data-title="${title}"]`);
     if (existing) existing.remove();
     
@@ -227,7 +223,6 @@ function updateClock() {
     clock.textContent = `${hours}:${minutes}`;
 }
 
-// ===== EVENT LISTENERS =====
 document.addEventListener('keydown', (e) => {
     if (!isPoweredOn && !powerOffScreen.classList.contains('hidden')) {
         powerOn();
@@ -280,7 +275,6 @@ if (maximizeBtn) {
     maximizeBtn.addEventListener('click', toggleMaximize);
 }
 
-// Drag da janela
 const titleBar = appWindow.querySelector('.window-title-bar');
 
 titleBar.addEventListener('mousedown', (e) => {
@@ -307,7 +301,6 @@ document.addEventListener('mouseup', () => {
     isDragging = false;
 });
 
-// Redimensionamento
 const resizeHandle = appWindow.querySelector('.window-resize-handle');
 let isResizing = false;
 let startSize = { w: 0, h: 0 };
@@ -339,6 +332,211 @@ document.addEventListener('mouseup', () => {
     isResizing = false;
 });
 
-// Relógio
 setInterval(updateClock, 1000);
 updateClock();
+
+// Virus simulation
+
+let infectionLevel = 0;
+const MAX_INFECTION = 15; 
+
+const originalDesktopBg = '#008080';
+const originalTaskbarBg = '#c0c0c0';
+
+window.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'VIRUS') {
+        const virusName = event.data.name;
+        console.log(`🧬 VÍRUS DETECTADO: ${virusName}`);
+
+        infectionLevel++;
+        updateInfectionUI();
+
+        showVirusAlert(`⚠️ ${virusName} ativado! (Nível ${infectionLevel}/${MAX_INFECTION})`);
+
+        applyVirusEffects(virusName);
+
+        if (infectionLevel >= MAX_INFECTION) {
+            triggerBlueScreenAndShutdown();
+        }
+    }
+});
+
+function updateInfectionUI() {
+    const statusBar = document.querySelector('.status-bar');
+    if (statusBar) {
+        let infector = document.getElementById('infection-indicator');
+        if (!infector) {
+            infector = document.createElement('span');
+            infector.id = 'infection-indicator';
+            infector.style.marginLeft = '20px';
+            infector.style.color = '#ff0000';
+            infector.style.fontWeight = 'bold';
+            statusBar.appendChild(infector);
+        }
+        infector.textContent = `⚠️ INFECÇÃO: ${infectionLevel}/${MAX_INFECTION}`;
+    }
+}
+
+function showVirusAlert(message) {
+    const alertDiv = document.createElement('div');
+    alertDiv.style.position = 'fixed';
+    alertDiv.style.bottom = '80px';
+    alertDiv.style.right = '20px';
+    alertDiv.style.backgroundColor = '#000';
+    alertDiv.style.color = '#ff0000';
+    alertDiv.style.border = '2px solid #ff0000';
+    alertDiv.style.padding = '10px 20px';
+    alertDiv.style.zIndex = '999999';
+    alertDiv.style.fontFamily = 'Courier New';
+    alertDiv.style.fontSize = '14px';
+    alertDiv.style.boxShadow = '0 0 20px #ff0000';
+    alertDiv.style.animation = 'alertPulse 0.5s infinite';
+    alertDiv.textContent = message;
+
+    alertDiv.innerHTML = `⚠️ ${message}`;
+
+    document.body.appendChild(alertDiv);
+
+    setTimeout(() => {
+        if (alertDiv.parentNode) alertDiv.remove();
+    }, 3000);
+}
+
+function applyVirusEffects(virusName) {
+    const desktop = document.getElementById('desktop');
+    const taskbar = document.querySelector('.taskbar');
+    const icons = document.querySelectorAll('.desktop-icon');
+
+    switch(virusName) {
+        case 'MEMZ':
+            desktop.style.animation = 'bgPulse 0.2s infinite';
+            break;
+        case 'BLSTER':
+            taskbar.style.backgroundColor = '#ff0000';
+            break;
+        case 'CIH':
+            icons.forEach(icon => {
+                icon.style.filter = 'hue-rotate(180deg)';
+            });
+            break;
+        case 'MELISSA':
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => showVirusAlert('📧 MELISSA: Mensagem ' + (i+1)), i * 800);
+            }
+            break;
+        case 'ILOVEYOU':
+            desktop.style.background = '#ff69b4';
+            break;
+        case 'CHERNOBYL':
+            document.body.style.filter = 'hue-rotate(90deg) brightness(1.5)';
+            break;
+        case 'GLITCH':
+            document.body.style.animation = 'glitchFlash 0.1s infinite';
+            break;
+        case 'BLUE_SCREEN':
+            break;
+        case 'CORRUPT':
+            document.querySelectorAll('.icon-label').forEach(label => {
+                label.textContent = label.textContent.split('').map(c => 
+                    Math.random() > 0.5 ? c : String.fromCharCode(c.charCodeAt(0)+1)
+                ).join('');
+            });
+            break;
+        case 'PIXEL':
+            for (let i = 0; i < 10; i++) {
+                createFloatingPixel();
+            }
+            break;
+        case 'DESTROY':
+            break;
+        default:
+            desktop.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 25%)`;
+    }
+}
+
+function createFloatingPixel() {
+    const pixel = document.createElement('div');
+    pixel.style.position = 'fixed';
+    pixel.style.width = '5px';
+    pixel.style.height = '5px';
+    pixel.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+    pixel.style.left = Math.random() * 100 + '%';
+    pixel.style.top = Math.random() * 100 + '%';
+    pixel.style.zIndex = '99999';
+    pixel.style.pointerEvents = 'none';
+    pixel.style.boxShadow = '0 0 10px currentColor';
+    document.body.appendChild(pixel);
+
+    setTimeout(() => {
+        if (pixel.parentNode) pixel.remove();
+    }, 2000);
+}
+
+function triggerBlueScreenAndShutdown() {
+    document.querySelectorAll('[style*="z-index: 999999"]').forEach(el => el.remove());
+
+    const bsod = document.createElement('div');
+    bsod.style.position = 'fixed';
+    bsod.style.top = '0';
+    bsod.style.left = '0';
+    bsod.style.width = '100%';
+    bsod.style.height = '100%';
+    bsod.style.backgroundColor = '#0000aa';
+    bsod.style.color = '#ffffff';
+    bsod.style.fontFamily = 'Courier New';
+    bsod.style.fontSize = '24px';
+    bsod.style.padding = '50px';
+    bsod.style.zIndex = '1000000';
+    bsod.style.whiteSpace = 'pre-wrap';
+    bsod.style.boxSizing = 'border-box';
+    bsod.innerHTML = `
+        SYSTEM CRASH
+        <br><br>
+        A fatal exception 0E has occurred at 0028:C0011E36.
+        The current application will be terminated.
+        <br><br>
+        * Press any key to terminate the current application
+        * Press CTRL+ALT+DEL to restart your computer.
+        <br><br>
+        Error: 0E : 016F : BFF9B3D4
+        <br><br>
+        Infecção crítica: O sistema foi comprometido.
+    `;
+    document.body.appendChild(bsod);
+
+    document.body.style.pointerEvents = 'none';
+
+    setTimeout(() => {
+        bsod.remove();
+        document.body.style.pointerEvents = 'auto';
+        resetInfection();
+        shutdownComputer();
+    }, 5000);
+}
+
+function resetInfection() {
+    infectionLevel = 0;
+
+    const indicator = document.getElementById('infection-indicator');
+    if (indicator) indicator.remove();
+
+    const desktop = document.getElementById('desktop');
+    const taskbar = document.querySelector('.taskbar');
+    if (desktop) {
+        desktop.style.background = originalDesktopBg;
+        desktop.style.animation = '';
+        desktop.style.filter = '';
+    }
+    if (taskbar) taskbar.style.backgroundColor = originalTaskbarBg;
+
+    document.body.style.filter = '';
+    document.body.style.animation = '';
+
+    document.querySelectorAll('.desktop-icon').forEach(icon => {
+        icon.style.filter = '';
+    });
+    document.querySelectorAll('.icon-label').forEach(label => {
+    });
+
+    document.querySelectorAll('[style*="z-index: 99999"]').forEach(el => el.remove());
+}

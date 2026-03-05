@@ -81,7 +81,6 @@ body {
     overflow: hidden;
 }
 
-/* Canvas 3D */
 .three-canvas {
     flex: 1;
     background: #000000;
@@ -89,7 +88,6 @@ body {
     min-width: 400px;
 }
 
-/* Painel de Controle */
 .control-panel {
     width: 350px;
     background: rgba(0, 0, 0, 0.85);
@@ -142,7 +140,6 @@ body {
     padding-bottom: 5px;
 }
 
-/* Controles de Dimensão */
 .dimension-controls {
     display: flex;
     gap: 5px;
@@ -177,7 +174,6 @@ body {
     transform: scale(1.02);
 }
 
-/* Constantes */
 .constant-display {
     display: flex;
     flex-direction: column;
@@ -217,7 +213,6 @@ body {
     font-size: 11px;
 }
 
-/* Fractais */
 .fractal-controls {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -249,7 +244,6 @@ body {
     transform: scale(1.01);
 }
 
-/* Números Primos */
 .prime-display {
     height: 200px;
     position: relative;
@@ -296,7 +290,6 @@ body {
     box-shadow: 0 0 10px magenta;
 }
 
-/* Fibonacci */
 .fibonacci-display {
     position: relative;
 }
@@ -338,7 +331,6 @@ body {
     box-shadow: 0 0 15px cyan;
 }
 
-/* Pitágoras */
 .pythagoras-demo {
     display: flex;
     flex-direction: column;
@@ -381,7 +373,6 @@ body {
     border-radius: 3px;
 }
 
-/* Teoria dos Números */
 .number-theory {
     display: flex;
     flex-direction: column;
@@ -413,7 +404,6 @@ body {
     text-align: center;
 }
 
-/* Painel de Informação */
 .info-panel {
     position: absolute;
     bottom: 20px;
@@ -502,7 +492,6 @@ body {
     background: #00ffff;
 }
 
-/* Efeitos de Partículas */
 .particle {
     position: fixed;
     pointer-events: none;
@@ -517,7 +506,6 @@ body {
     100% { transform: scale(3); opacity: 0; }
 }
 
-/* Modal de Erro */
 .error-modal {
     position: fixed;
     top: 50%;
@@ -575,7 +563,6 @@ body {
     display: none !important;
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
     .control-panel {
         width: 300px;

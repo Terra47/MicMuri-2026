@@ -1,10 +1,8 @@
-// ===== ELEMENTOS =====
 const aboutOk = document.getElementById('aboutOk');
 const errorModal = document.getElementById('errorModal');
 const errorMessage = document.getElementById('errorMessage');
 const errorClose = document.getElementById('errorClose');
 
-// ===== FUNÇÕES =====
 function showError(message) {
     errorMessage.textContent = message;
     errorModal.classList.remove('hidden');
@@ -15,9 +13,7 @@ function showError(message) {
     }, 300);
 }
 
-// ===== EVENT LISTENERS =====
 aboutOk.addEventListener('click', () => {
-    // Fecha a janela (simulado)
     showError('Não foi possível fechar a janela.\nAplicativo ocupado.');
 });
 
@@ -25,20 +21,16 @@ errorClose.addEventListener('click', () => {
     errorModal.classList.add('hidden');
 });
 
-// Fechar com ESC
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         errorModal.classList.add('hidden');
     }
 });
 
-// ===== INICIALIZAÇÃO =====
-// Atualiza informações do sistema
 const memInfo = document.querySelector('.system-info');
 const freeMem = Math.floor(Math.random() * 5) + 6;
 memInfo.textContent = `Memória disponível: ${freeMem},${Math.floor(Math.random() * 9)} MB`;
 
-// Adiciona animação de erro
 const style = document.createElement('style');
 style.textContent = `
     @keyframes errorShake {

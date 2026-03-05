@@ -1,6 +1,3 @@
-/* ===== EFEITOS CRT AVANÇADOS ===== */
-
-/* Estática com variação */
 .crt-static {
     position: fixed;
     top: 0;
@@ -27,7 +24,6 @@
     90% { transform: translate(-2px, 0); opacity: 0.45; }
 }
 
-/* Linhas de scan */
 .crt-scanlines {
     position: fixed;
     top: 0;
@@ -50,7 +46,6 @@
     100% { transform: translateY(100%); }
 }
 
-/* Curvatura do tubo */
 .crt-curvature {
     position: fixed;
     top: 0;
@@ -67,7 +62,6 @@
     z-index: 9997;
 }
 
-/* Flicker */
 .crt-flicker {
     position: fixed;
     top: 0;
@@ -87,7 +81,6 @@
     75% { opacity: 0.98; }
 }
 
-/* Ondas de interferência */
 .crt-interference {
     position: fixed;
     top: 0;
@@ -109,7 +102,6 @@
     100% { transform: translateX(100%); }
 }
 
-/* Brilho de borda */
 .crt-glow {
     position: fixed;
     top: 0;

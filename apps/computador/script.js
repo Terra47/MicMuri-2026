@@ -1,4 +1,3 @@
-// ===== DADOS DAS UNIDADES =====
 const drives = [
     { 
         name: 'Disco Local (C:)', 
@@ -62,7 +61,6 @@ const drives = [
     }
 ];
 
-// ===== ELEMENTOS =====
 const drivesContainer = document.getElementById('drivesContainer');
 const addressField = document.getElementById('addressField');
 const goBtn = document.getElementById('goBtn');
@@ -75,10 +73,8 @@ const propertiesModal = document.getElementById('propertiesModal');
 const propertiesContent = document.getElementById('propertiesContent');
 const propertiesClose = document.getElementById('propertiesClose');
 
-// ===== VARIÁVEIS =====
 let selectedDrive = null;
 
-// ===== FUNÇÕES =====
 function createDrives() {
     drives.forEach(drive => {
         const driveElement = document.createElement('div');
@@ -160,7 +156,6 @@ function showProperties(drive) {
     propertiesModal.classList.remove('hidden');
 }
 
-// ===== EVENT LISTENERS =====
 goBtn.addEventListener('click', () => {
     const path = addressField.value;
     const found = drives.find(d => d.name === path);
@@ -204,7 +199,6 @@ document.querySelectorAll('.menu-item').forEach(item => {
     });
 });
 
-// ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', createDrives);
 
 // Adiciona animação de erro

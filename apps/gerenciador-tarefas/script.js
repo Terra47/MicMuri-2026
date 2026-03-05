@@ -1,4 +1,3 @@
-// ===== DADOS SIMULADOS =====
 let applications = [
     { name: 'Meu Computador', status: 'Executando', cpu: '02', memory: '1,2 MB' },
     { name: 'Windows Explorer', status: 'Executando', cpu: '08', memory: '3,4 MB' },
@@ -24,7 +23,6 @@ let processes = [
     { name: 'MMTASK.TSK', pid: '0901', cpu: '02', memory: '1,1 MB', threads: '4' }
 ];
 
-// ===== ELEMENTOS =====
 const tabApps = document.getElementById('tabApps');
 const tabProcesses = document.getElementById('tabProcesses');
 const tabPerformance = document.getElementById('tabPerformance');
@@ -68,13 +66,11 @@ const priorityProcess = document.getElementById('priorityProcess');
 const priorityOk = document.getElementById('priorityOk');
 const priorityCancel = document.getElementById('priorityCancel');
 
-// ===== VARIÁVEIS =====
 let selectedApp = null;
 let selectedProcess = null;
 let cpuHistoryArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let startTime = Date.now();
 
-// ===== FUNÇÕES =====
 function showError(message) {
     errorMessage.textContent = message;
     errorModal.classList.remove('hidden');
@@ -180,7 +176,6 @@ function updatePerformance() {
     uptime.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-// ===== EVENT LISTENERS =====
 tabApps.addEventListener('click', () => {
     tabApps.classList.add('active');
     tabProcesses.classList.remove('active');
@@ -308,7 +303,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', () => {
     loadApps();
     loadProcesses();

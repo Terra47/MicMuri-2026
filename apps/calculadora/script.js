@@ -1,4 +1,3 @@
-// ===== ELEMENTOS =====
 const display = document.getElementById('display');
 const mc = document.getElementById('mc');
 const mr = document.getElementById('mr');
@@ -12,14 +11,12 @@ const errorModal = document.getElementById('errorModal');
 const errorMessage = document.getElementById('errorMessage');
 const errorClose = document.getElementById('errorClose');
 
-// ===== VARIÁVEIS =====
 let currentInput = '0';
 let previousInput = '';
 let operation = null;
 let memory = 0;
 let resetNext = false;
 
-// ===== FUNÇÕES =====
 function showError(message) {
     errorMessage.textContent = message;
     errorModal.classList.remove('hidden');
@@ -106,8 +103,7 @@ function calculate() {
         default:
             return;
     }
-    
-    // Verifica se o resultado é válido
+
     if (!isFinite(result) || isNaN(result)) {
         showError('Resultado indefinido');
         clearAll();
@@ -128,7 +124,6 @@ function clearAll() {
     updateDisplay();
 }
 
-// ===== EVENT LISTENERS =====
 document.querySelectorAll('.calc-btn[data-value]').forEach(btn => {
     btn.addEventListener('click', () => {
         const value = btn.dataset.value;
@@ -204,7 +199,6 @@ errorClose.addEventListener('click', () => {
     errorModal.classList.add('hidden');
 });
 
-// Teclado
 document.addEventListener('keydown', (e) => {
     if (e.key >= '0' && e.key <= '9') {
         inputNumber(e.key);
@@ -221,7 +215,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ===== INICIALIZAÇÃO =====
 updateDisplay();
 updateMemoryIndicator();
 

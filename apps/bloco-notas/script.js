@@ -1,4 +1,3 @@
-// ===== ELEMENTOS =====
 const editor = document.getElementById('editor');
 const cursorPos = document.getElementById('cursorPos');
 const charCount = document.getElementById('charCount');
@@ -12,11 +11,9 @@ const errorModal = document.getElementById('errorModal');
 const errorMessage = document.getElementById('errorMessage');
 const errorClose = document.getElementById('errorClose');
 
-// ===== VARIÁVEIS =====
 let currentFile = 'Sem título.txt';
 let isModified = false;
 
-// ===== FUNÇÕES =====
 function showError(message) {
     errorMessage.textContent = message;
     errorModal.classList.remove('hidden');
@@ -62,7 +59,6 @@ function showFileDialog(title, action) {
     };
 }
 
-// ===== EVENT LISTENERS =====
 editor.addEventListener('input', () => {
     isModified = true;
     updateCursorPosition();
@@ -118,14 +114,12 @@ errorClose.addEventListener('click', () => {
     errorModal.classList.add('hidden');
 });
 
-// Fechar modais com ESC
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         fileModal.classList.add('hidden');
         errorModal.classList.add('hidden');
     }
-    
-    // Ctrl+S para salvar
+
     if (e.ctrlKey && e.key === 's') {
         e.preventDefault();
         if (currentFile === 'Sem título.txt') {
@@ -136,10 +130,8 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ===== INICIALIZAÇÃO =====
 updateCursorPosition();
 
-// Adiciona animação de erro
 const style = document.createElement('style');
 style.textContent = `
     @keyframes errorShake {

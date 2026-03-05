@@ -1,19 +1,15 @@
-// ===== EFEITOS CRT =====
-
 class CRTEffects {
     constructor() {
         this.intervals = [];
     }
     
     start() {
-        // Estática periódica
         this.intervals.push(setInterval(() => {
             if (Math.random() > 0.7) {
                 this.addStatic();
             }
         }, 5000));
         
-        // Glitch periódico
         this.intervals.push(setInterval(() => {
             if (Math.random() > 0.8) {
                 this.addGlitch();
@@ -48,7 +44,6 @@ class CRTEffects {
     }
 }
 
-// Adiciona estilos dinâmicos
 const style = document.createElement('style');
 style.textContent = `
     .crt-static-burst {

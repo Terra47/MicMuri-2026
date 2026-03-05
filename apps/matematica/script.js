@@ -1,24 +1,20 @@
-// ===== INICIALIZAÇÃO DO THREE.JS =====
 let scene, camera, renderer;
 let objects = [];
 let currentDimension = '3d';
 let currentFractal = 'julia';
 let animationId;
 
-// Elementos DOM
 const threeCanvas = document.getElementById('threeCanvas');
 const infoPanel = document.getElementById('infoPanel');
 const infoTitle = document.getElementById('infoTitle');
 const infoContent = document.getElementById('infoContent');
 const infoClose = document.getElementById('infoClose');
 
-// ===== VERIFICAÇÃO DO THREE.JS =====
 if (typeof THREE === 'undefined') {
     console.error('Three.js não carregado!');
     showError('Erro ao carregar bibliotecas 3D. Recarregue a página.');
 }
 
-// ===== CONFIGURAÇÃO DO THREE.JS =====
 function initThree() {
     if (!threeCanvas) return;
     
@@ -35,10 +31,10 @@ function initThree() {
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.setSize(width, height);
     renderer.setPixelRatio(window.devicePixelRatio);
-    threeCanvas.innerHTML = ''; // Limpa antes de adicionar
+    threeCanvas.innerHTML = ''; 
     threeCanvas.appendChild(renderer.domElement);
     
-    // Luzes
+
     const ambientLight = new THREE.AmbientLight(0x404060);
     scene.add(ambientLight);
     
@@ -54,10 +50,10 @@ function initThree() {
     pointLight3.position.set(0, 4, 2);
     scene.add(pointLight3);
     
-    // Estrelas de fundo
+
     createStars();
     
-    // Objeto inicial
+
     createJulia3D();
     
     animate();
@@ -70,7 +66,7 @@ function createStars() {
     const starsColors = new Float32Array(starsCount * 3);
     
     for (let i = 0; i < starsCount * 3; i += 3) {
-        // Posições em esfera
+
         const r = 50 + Math.random() * 50;
         const theta = Math.random() * Math.PI * 2;
         const phi = Math.acos(2 * Math.random() - 1);
@@ -78,8 +74,7 @@ function createStars() {
         starsPositions[i] = r * Math.sin(phi) * Math.cos(theta);
         starsPositions[i+1] = r * Math.sin(phi) * Math.sin(theta);
         starsPositions[i+2] = r * Math.cos(phi);
-        
-        // Cores aleatórias
+
         const color = new THREE.Color().setHSL(Math.random(), 0.5, 0.5);
         starsColors[i] = color.r;
         starsColors[i+1] = color.g;
@@ -99,9 +94,6 @@ function createStars() {
     scene.add(stars);
 }
 
-// ===== OBJETOS 3D MATEMÁTICOS =====
-
-// Mandelbrot 3D melhorado
 function createMandelbrot3D() {
     clearObjects();
     
@@ -146,7 +138,6 @@ function createMandelbrot3D() {
     objects.push(points);
 }
 
-// Julia 3D melhorado
 function createJulia3D() {
     clearObjects();
     
@@ -191,7 +182,6 @@ function createJulia3D() {
     objects.push(points);
 }
 
-// Sierpinski Tetrahedron melhorado
 function createSierpinski() {
     clearObjects();
     
@@ -240,7 +230,6 @@ function createSierpinski() {
     addTetrahedron(p1, p2, p3, p4, 3);
 }
 
-// Curva do Dragão 3D melhorada
 function createDragonCurve() {
     clearObjects();
     
@@ -289,7 +278,6 @@ function createDragonCurve() {
     objects.push(line);
 }
 
-// Floco de Koch 3D
 function createKoch() {
     clearObjects();
     
@@ -316,8 +304,7 @@ function createKoch() {
         
         const pA = new THREE.Vector3().copy(p1).addScaledVector(v, length / 3);
         const pB = new THREE.Vector3().copy(p1).addScaledVector(v, 2 * length / 3);
-        
-        // Ponto do triângulo
+
         const perp = new THREE.Vector3(-v.y, v.x, v.z * 0.5);
         perp.normalize();
         const pMid = new THREE.Vector3().copy(pA).addScaledVector(v, length / 6).addScaledVector(perp, length * 0.2887);
@@ -340,7 +327,6 @@ function createKoch() {
     kochLine(points[2], points[0], 3);
 }
 
-// Árvore Fractal
 function createFractalTree() {
     clearObjects();
     
@@ -377,11 +363,9 @@ function createFractalTree() {
     drawBranch(start, dir, 1.5, 5, 8);
 }
 
-// Tesseract (4D) melhorado
 function createTesseract() {
     clearObjects();
     
-    // Pontos de um hipercubo 4D projetados em 3D com rotação 4D
     const points = [];
     for (let i = 0; i < 16; i++) {
         const x = (i & 1) ? 1.5 : -1.5;
@@ -389,12 +373,12 @@ function createTesseract() {
         const z = (i & 4) ? 1.5 : -1.5;
         const w = (i & 8) ? 1.5 : -1.5;
         
-        // Rotação 4D simples
+
         const angle = Date.now() * 0.001;
         const w1 = w * Math.cos(angle) - x * Math.sin(angle);
         const x1 = w * Math.sin(angle) + x * Math.cos(angle);
         
-        // Projeção perspectiva 4D -> 3D
+
         const distance = 4;
         const scale = distance / (distance + w1 * 0.3);
         points.push(new THREE.Vector3(x1 * scale, y * scale, z * scale));
@@ -403,15 +387,14 @@ function createTesseract() {
     const edges = [];
     for (let i = 0; i < 16; i++) {
         for (let j = i + 1; j < 16; j++) {
-            // Conecta se diferem em apenas 1 bit
+
             const diff = i ^ j;
             if (diff === 1 || diff === 2 || diff === 4 || diff === 8) {
                 edges.push([i, j]);
             }
         }
     }
-    
-    // Linhas
+
     const lineGeometry = new THREE.BufferGeometry();
     const lineVertices = [];
     edges.forEach(edge => {
@@ -432,8 +415,7 @@ function createTesseract() {
     const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lines);
     objects.push(lines);
-    
-    // Pontos
+
     const sphereGeometry = new THREE.SphereGeometry(0.15, 16, 16);
     points.forEach((p, i) => {
         const color = new THREE.Color().setHSL(i / 16, 1, 0.6);
@@ -456,13 +438,11 @@ function clearObjects() {
     objects = [];
 }
 
-// ===== ANIMAÇÃO =====
 function animate() {
     if (!scene || !camera || !renderer) return;
     
     animationId = requestAnimationFrame(animate);
     
-    // Rotação suave baseada no tempo
     objects.forEach(obj => {
         if (currentDimension === '4d' || currentDimension === '5d') {
             obj.rotation.y += 0.002;
@@ -476,7 +456,6 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-// ===== CONSTANTES MATEMÁTICAS =====
 const constants = {
     pi: {
         title: 'π (Pi)',
@@ -517,7 +496,6 @@ const constants = {
     }
 };
 
-// ===== TEORIA DOS NÚMEROS =====
 const theories = {
     goldbach: {
         title: 'Conjectura de Goldbach',
@@ -545,7 +523,6 @@ const theories = {
     }
 };
 
-// ===== FUNÇÕES DE INFORMAÇÃO =====
 function showConstantInfo(constant) {
     const info = constants[constant];
     if (!info) return;
@@ -612,7 +589,6 @@ function showError(message) {
     setTimeout(() => errorModal.remove(), 3000);
 }
 
-// ===== NÚMEROS PRIMOS =====
 function generatePrimes() {
     const container = document.getElementById('primeSpiral');
     if (!container) return;
@@ -632,7 +608,7 @@ function generatePrimes() {
     }
     
     primes.forEach((prime, index) => {
-        const angle = index * 2.39996; // Proporção áurea
+        const angle = index * 2.39996; 
         const radius = 5 + index * 0.8;
         const x = 100 + Math.cos(angle) * radius * 5;
         const y = 100 + Math.sin(angle) * radius * 5;
@@ -646,8 +622,7 @@ function generatePrimes() {
         el.addEventListener('click', (e) => {
             e.stopPropagation();
             infoTitle.textContent = `🌀 Número Primo: ${prime}`;
-            
-            // Verifica propriedades do primo
+
             const isTwin = primes.includes(prime-2) || primes.includes(prime+2);
             const isCousin = primes.includes(prime-4) || primes.includes(prime+4);
             const isSexy = primes.includes(prime-6) || primes.includes(prime+6);
@@ -672,7 +647,6 @@ function generatePrimes() {
     });
 }
 
-// ===== SEQUÊNCIA DE FIBONACCI =====
 function generateFibonacci() {
     const container = document.getElementById('fibonacciNumbers');
     const spiralContainer = document.getElementById('fibonacciSpiral');
@@ -698,7 +672,6 @@ function generateFibonacci() {
         el.addEventListener('click', () => {
             infoTitle.textContent = `🌀 Número de Fibonacci: F${index} = ${num}`;
             
-            // Razão áurea
             const ratio = index > 0 ? (num / fibNumbers[index-1]).toFixed(6) : '---';
             
             infoContent.innerHTML = `
@@ -715,7 +688,6 @@ function generateFibonacci() {
         container.appendChild(el);
     });
     
-    // Espiral de Fibonacci
     a = 0, b = 1;
     let x = 60, y = 60;
     let direction = 0;
@@ -728,28 +700,28 @@ function generateFibonacci() {
         rect.style.boxShadow = '0 0 10px cyan';
         
         switch(direction % 4) {
-            case 0: // direita
+            case 0: 
                 rect.style.left = x + 'px';
                 rect.style.top = y - size + 'px';
                 rect.style.width = size + 'px';
                 rect.style.height = size + 'px';
                 x += size;
                 break;
-            case 1: // cima
+            case 1: 
                 rect.style.left = x - size + 'px';
                 rect.style.top = y - size + 'px';
                 rect.style.width = size + 'px';
                 rect.style.height = size + 'px';
                 y -= size;
                 break;
-            case 2: // esquerda
+            case 2: 
                 rect.style.left = x - size + 'px';
                 rect.style.top = y + 'px';
                 rect.style.width = size + 'px';
                 rect.style.height = size + 'px';
                 x -= size;
                 break;
-            case 3: // baixo
+            case 3: 
                 rect.style.left = x + 'px';
                 rect.style.top = y + 'px';
                 rect.style.width = size + 'px';
@@ -758,7 +730,7 @@ function generateFibonacci() {
                 break;
         }
         
-        // Adiciona arco
+
         const arc = document.createElement('div');
         arc.style.position = 'absolute';
         arc.style.border = '2px solid #ff00ff';
@@ -802,7 +774,6 @@ function generateFibonacci() {
     }
 }
 
-// ===== TEOREMA DE PITÁGORAS =====
 function initPythagoras() {
     const canvas = document.getElementById('pythagorasCanvas');
     if (!canvas) return;
@@ -825,20 +796,20 @@ function initPythagoras() {
         
         ctx.clearRect(0, 0, 200, 200);
         
-        // Desenha quadrado do cateto A
+
         ctx.fillStyle = 'rgba(0, 255, 255, 0.2)';
         ctx.strokeStyle = '#00ffff';
         ctx.lineWidth = 2;
         ctx.fillRect(10, 190 - a*12, 12, a*12);
         ctx.strokeRect(10, 190 - a*12, 12, a*12);
         
-        // Desenha quadrado do cateto B
+
         ctx.fillStyle = 'rgba(255, 0, 255, 0.2)';
         ctx.strokeStyle = '#ff00ff';
         ctx.fillRect(10, 190 - b*12, b*12, 12);
         ctx.strokeRect(10, 190 - b*12, b*12, 12);
         
-        // Desenha quadrado da hipotenusa
+
         ctx.fillStyle = 'rgba(255, 255, 0, 0.2)';
         ctx.strokeStyle = '#ffff00';
         ctx.save();
@@ -848,7 +819,7 @@ function initPythagoras() {
         ctx.strokeRect(0, -12, c*12, 12);
         ctx.restore();
         
-        // Desenha triângulo
+
         ctx.strokeStyle = '#ffffff';
         ctx.lineWidth = 3;
         ctx.beginPath();
@@ -858,7 +829,7 @@ function initPythagoras() {
         ctx.closePath();
         ctx.stroke();
         
-        // Labels
+
         ctx.fillStyle = '#00ffff';
         ctx.font = 'bold 10px "MS Sans Serif"';
         ctx.fillText(`${a}`, 10 + a*6, 200);
@@ -874,14 +845,14 @@ function initPythagoras() {
     drawTriangle();
 }
 
-// ===== EVENT LISTENERS =====
+
 if (infoClose) {
     infoClose.addEventListener('click', () => {
         infoPanel.classList.remove('visible');
     });
 }
 
-// Dimensões
+
 document.querySelectorAll('.dimension-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         document.querySelectorAll('.dimension-btn').forEach(b => b.classList.remove('active'));
@@ -893,7 +864,7 @@ document.querySelectorAll('.dimension-btn').forEach(btn => {
         if (dim === '4d' || dim === '5d') {
             createTesseract();
         } else {
-            // Recria o fractal atual na dimensão selecionada
+
             switch(currentFractal) {
                 case 'mandelbrot': createMandelbrot3D(); break;
                 case 'julia': createJulia3D(); break;
@@ -915,7 +886,7 @@ document.querySelectorAll('.dimension-btn').forEach(btn => {
     });
 });
 
-// Fractais
+
 document.querySelectorAll('.fractal-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         document.querySelectorAll('.fractal-btn').forEach(b => b.classList.remove('active'));
@@ -924,7 +895,6 @@ document.querySelectorAll('.fractal-btn').forEach(btn => {
         const fractal = btn.dataset.fractal;
         currentFractal = fractal;
         
-        // Se estiver em 4D/5D, volta para 3D
         if (currentDimension === '4d' || currentDimension === '5d') {
             document.querySelectorAll('.dimension-btn').forEach(b => b.classList.remove('active'));
             document.querySelector('[data-dim="3d"]').classList.add('active');
@@ -991,9 +961,9 @@ function getFractalInfo(fractal) {
     return infos[fractal] || '<p>Explore este fractal fascinante!</p>';
 }
 
-// Controles da janela
+
 document.getElementById('minimizeBtn')?.addEventListener('click', () => {
-    // Minimizar (esconder por enquanto)
+
     document.querySelector('.museum-content').style.display = 'none';
     setTimeout(() => {
         document.querySelector('.museum-content').style.display = 'flex';
@@ -1001,7 +971,7 @@ document.getElementById('minimizeBtn')?.addEventListener('click', () => {
 });
 
 document.getElementById('maximizeBtn')?.addEventListener('click', () => {
-    // Maximizar (toggle fullscreen)
+
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
     } else {
@@ -1010,11 +980,11 @@ document.getElementById('maximizeBtn')?.addEventListener('click', () => {
 });
 
 document.getElementById('closeBtn')?.addEventListener('click', () => {
-    // Fechar (voltar para o desktop)
+
     window.parent.postMessage('closeApp', '*');
 });
 
-// Fechar painel ao clicar fora
+
 document.addEventListener('click', (e) => {
     if (infoPanel && !infoPanel.contains(e.target) && 
         !e.target.closest('.constant-item') && 
@@ -1027,7 +997,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Redimensionamento
+
 window.addEventListener('resize', () => {
     if (renderer && camera) {
         const width = threeCanvas.clientWidth || 800;
@@ -1039,23 +1009,20 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Limpeza
 window.addEventListener('beforeunload', () => {
     if (animationId) {
         cancelAnimationFrame(animationId);
     }
 });
 
-// ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', () => {
-    // Pequeno delay para garantir que o DOM está pronto
+
     setTimeout(() => {
         initThree();
         generatePrimes();
         generateFibonacci();
         initPythagoras();
         
-        // Se algo falhar, tenta novamente
         if (!scene) {
             setTimeout(initThree, 500);
         }

@@ -1,4 +1,3 @@
-// ===== CATEGORIAS E ITENS =====
 const categories = {
     system: {
         name: 'Sistema',
@@ -62,7 +61,6 @@ const categories = {
     }
 };
 
-// ===== ELEMENTOS =====
 const systemItems = document.getElementById('systemItems');
 const hardwareItems = document.getElementById('hardwareItems');
 const appearanceItems = document.getElementById('appearanceItems');
@@ -78,10 +76,8 @@ const errorMessage = document.getElementById('errorMessage');
 const errorClose = document.getElementById('errorClose');
 const itemCount = document.getElementById('itemCount');
 
-// ===== VARIÁVEIS =====
 let selectedItem = null;
 
-// ===== FUNÇÕES =====
 function showError(message) {
     errorMessage.textContent = message;
     errorModal.classList.remove('hidden');
@@ -189,42 +185,36 @@ function showProperties(item, category) {
 function loadCategoryItems() {
     let totalItems = 0;
     
-    // System
     categories.system.items.forEach(item => {
         const itemEl = createCategoryItem(item);
         systemItems.appendChild(itemEl);
         totalItems++;
     });
     
-    // Hardware
     categories.hardware.items.forEach(item => {
         const itemEl = createCategoryItem(item);
         hardwareItems.appendChild(itemEl);
         totalItems++;
     });
     
-    // Appearance
     categories.appearance.items.forEach(item => {
         const itemEl = createCategoryItem(item);
         appearanceItems.appendChild(itemEl);
         totalItems++;
     });
     
-    // Network
     categories.network.items.forEach(item => {
         const itemEl = createCategoryItem(item);
         networkItems.appendChild(itemEl);
         totalItems++;
     });
     
-    // Programs
     categories.programs.items.forEach(item => {
         const itemEl = createCategoryItem(item);
         programsItems.appendChild(itemEl);
         totalItems++;
     });
     
-    // Users
     categories.users.items.forEach(item => {
         const itemEl = createCategoryItem(item);
         usersItems.appendChild(itemEl);
@@ -265,7 +255,6 @@ function createCategoryItem(item) {
     return div;
 }
 
-// ===== EVENT LISTENERS =====
 document.querySelectorAll('.category-header').forEach(header => {
     header.addEventListener('click', () => {
         const category = header.dataset.category;
@@ -292,7 +281,6 @@ errorClose.addEventListener('click', () => {
     errorModal.classList.add('hidden');
 });
 
-// Fechar modais com ESC
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         propertyModal.classList.add('hidden');
@@ -300,10 +288,8 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', loadCategoryItems);
 
-// Adiciona animação de erro
 const style = document.createElement('style');
 style.textContent = `
     @keyframes errorShake {

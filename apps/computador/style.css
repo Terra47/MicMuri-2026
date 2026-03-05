@@ -146,7 +146,6 @@ body {
     font-size: 11px;
 }
 
-/* Modal de Erro */
 .error-modal {
     position: fixed;
     top: 50%;
@@ -203,7 +202,6 @@ body {
     justify-content: center;
 }
 
-/* Modal de Propriedades */
 .properties-modal {
     position: fixed;
     top: 50%;
