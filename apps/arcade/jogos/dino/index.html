@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>⚡ RETRO RUNNER • ARCADE 1984</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="arcade-machine">
+        <div class="cabinet-top">
+            <div class="marquee">
+                <span>⚡ CYBER RUNNER ⚡ 1984 ARCADE ⚡</span>
+            </div>
+        </div>
+
+        <div class="screen-area">
+            <div class="screen-bezel">
+                <div class="screen">
+                    <div class="score-panel">
+                        <div class="score-block">
+                            <span class="score-label">SCORE</span>
+                            <span class="score-value" id="score">0000</span>
+                        </div>
+                        <div class="score-block">
+                            <span class="score-label">HI-SCORE</span>
+                            <span class="score-value" id="highScore">0000</span>
+                        </div>
+                        <div class="score-block">
+                            <span class="score-label">ZONE</span>
+                            <span class="score-value" id="zone">1</span>
+                        </div>
+                    </div>
+
+                    <canvas id="gameCanvas" width="600" height="200"></canvas>
+
+                    <div class="arcade-message" id="startMessage">
+                        <div class="message-box">
+                            <span class="blink">⚡ PRESSIONE ESPAÇO ⚡</span>
+                        </div>
+                    </div>
+
+                    <div class="arcade-message hidden" id="gameOverMessage">
+                        <div class="message-box">
+                            <span class="gameover-title">GAME OVER</span>
+                            <button class="arcade-button" id="restartBtn">▶ JOGAR NOVAMENTE ◀</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div class="button-panel">
+                <div class="button-label">
+                    <span class="key">ESP</span>
+                    <span>SALTAR</span>
+                </div>
+                <div class="button-label">
+                    <span class="key">↓</span>
+                    <span>ABAIXAR</span>
+                </div>
+                <div class="button-label">
+                    <span class="key">R</span>
+                    <span>RESET</span>
+                </div>
+            </div>
+            <div class="coin-door">
+                <div class="coin-slot"></div>
+            </div>
+        </div>
+
+        <div class="mobile-controls">
+            <button class="mobile-btn" id="jumpBtn">⬆️ SALTAR</button>
+            <button class="mobile-btn" id="duckBtn">⬇️ ABAIXAR</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

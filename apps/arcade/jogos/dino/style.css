@@ -1,0 +1,268 @@
+@font-face {
+    font-family: 'Arcade';
+    src: url('https://fonts.cdnfonts.com/css/arcade-classic') format('woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+}
+
+body {
+    font-family: 'Arcade', monospace;
+    background: #000;
+    height: 100vh;
+    overflow: hidden;
+    color: #0ff;
+}
+
+.arcade-machine {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+    border: 4px solid #0ff;
+    box-shadow: 0 0 30px #0ff;
+}
+
+.cabinet-top {
+    background: #000;
+    padding: 10px;
+    border-bottom: 2px solid #f0f;
+}
+
+.marquee {
+    background: #000;
+    padding: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 2px solid #f0f;
+    box-shadow: 0 0 15px #f0f;
+}
+
+.marquee span {
+    display: inline-block;
+    color: #0ff;
+    font-size: 20px;
+    letter-spacing: 4px;
+    animation: marqueeScroll 15s linear infinite;
+    text-shadow: 0 0 10px #0ff;
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.screen-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.screen-bezel {
+    background: #111;
+    padding: 20px;
+    border: 2px solid #0ff;
+    border-radius: 10px;
+    box-shadow: inset 0 0 30px #0ff, 0 0 20px #0ff;
+}
+
+.screen {
+    background: #000;
+    border: 2px solid #f0f;
+    padding: 20px;
+    min-width: 700px;
+    position: relative;
+}
+
+.score-panel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #000;
+    border: 2px solid #0ff;
+}
+
+.score-block {
+    text-align: center;
+}
+
+.score-label {
+    display: block;
+    color: #f0f;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.score-value {
+    display: block;
+    color: #0ff;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #0ff;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #000;
+    border: 2px solid #0ff;
+}
+
+.arcade-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.message-box {
+    background: #000;
+    border: 2px solid #0ff;
+    padding: 20px 40px;
+    text-align: center;
+    box-shadow: 0 0 30px #0ff;
+}
+
+.blink {
+    color: #0ff;
+    font-size: 16px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.gameover-title {
+    color: #f0f;
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: block;
+    text-shadow: 0 0 15px #f0f;
+}
+
+.arcade-button {
+    background: #000;
+    border: 2px solid #0ff;
+    color: #0ff;
+    padding: 10px 20px;
+    font-family: 'Arcade', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #0ff;
+}
+
+.arcade-button:hover {
+    background: #0ff;
+    color: #000;
+}
+
+.control-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #111;
+    border-top: 2px solid #f0f;
+}
+
+.button-panel {
+    display: flex;
+    gap: 30px;
+}
+
+.button-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: #0ff;
+}
+
+.key {
+    background: #000;
+    border: 2px solid #f0f;
+    color: #f0f;
+    padding: 8px 15px;
+    font-size: 14px;
+    box-shadow: 0 0 10px #f0f;
+}
+
+.coin-door {
+    display: flex;
+    gap: 15px;
+}
+
+.coin-slot {
+    width: 20px;
+    height: 60px;
+    background: #333;
+    border: 2px solid #0ff;
+    position: relative;
+}
+
+.coin-slot::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    width: 8px;
+    height: 3px;
+    background: #0ff;
+}
+
+.mobile-controls {
+    display: none;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+    background: #111;
+    border-top: 2px solid #f0f;
+}
+
+.mobile-btn {
+    background: #000;
+    border: 2px solid #0ff;
+    color: #0ff;
+    padding: 15px 30px;
+    font-family: 'Arcade', monospace;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    flex: 1;
+    max-width: 200px;
+}
+
+.mobile-btn:active {
+    background: #0ff;
+    color: #000;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .screen {
+        min-width: auto;
+        padding: 10px;
+    }
+    
+    .control-panel {
+        display: none;
+    }
+    
+    .mobile-controls {
+        display: flex;
+    }
+}
