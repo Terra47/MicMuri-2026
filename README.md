@@ -8,11 +8,11 @@ Projeto desenvolvido para a Mostra Científica 2026 do Instituto Murialdo. Simul
 
 ### v5.0 - 08/03/2026
 - Sudoku com níveis de dificuldade ajustáveis
-- Termo integrado ao arcade
+- Termo semelhante ao que possuímos hoje
 - Tetris clássico com visual retrô
-- Pong com multiplayer local
-- Snake com ranking de pontuação
-- Space Invaders com efeitos arcade
+- Pong contra IA
+- Snake clássico e atual
+- Space Invaders com fases progressivas e níveis de dificuldades
 
 ### v4.0 - 06/03/2026
 - Arcade completo com 5 jogos
