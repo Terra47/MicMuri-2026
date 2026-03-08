@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🧩 TETRIS • ARCADE RETRÔ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tetris-game">
+        <div class="game-header">
+            <button class="back-btn" id="backToArcade">← VOLTAR</button>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <span class="stat-label">PONTOS</span>
+                    <span class="stat-value" id="score">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">LINHAS</span>
+                    <span class="stat-value" id="lines">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">NÍVEL</span>
+                    <span class="stat-value" id="level">1</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <canvas id="gameCanvas" width="300" height="600"></canvas>
+            
+            <div class="info-panel">
+                <div class="next-piece">
+                    <span class="panel-title">PRÓXIMA</span>
+                    <canvas id="nextCanvas" width="120" height="120"></canvas>
+                </div>
+                
+                <div class="hold-piece">
+                    <span class="panel-title">SEGURAR</span>
+                    <canvas id="holdCanvas" width="120" height="120"></canvas>
+                </div>
+
+                <div class="controls-info">
+                    <div class="control-row">
+                        <span class="key">←</span>
+                        <span class="key">→</span>
+                        <span>MOVER</span>
+                    </div>
+                    <div class="control-row">
+                        <span class="key">↑</span>
+                        <span>GIRAR</span>
+                    </div>
+                    <div class="control-row">
+                        <span class="key">↓</span>
+                        <span>DESCER</span>
+                    </div>
+                    <div class="control-row">
+                        <span class="key">ESPAÇO</span>
+                        <span>DROP</span>
+                    </div>
+                    <div class="control-row">
+                        <span class="key">C</span>
+                        <span>SEGURAR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-footer">
+            <span>🧩 TETRIS • 1984</span>
+            <span>Pressione P para pausar</span>
+        </div>
+
+        <div class="pause-screen hidden" id="pauseScreen">
+            <div class="pause-content">
+                <h2>⏸️ PAUSADO</h2>
+                <p>Pressione P para continuar</p>
+            </div>
+        </div>
+
+        <div class="message-screen hidden" id="gameOverScreen">
+            <div class="message-content">
+                <h2>💀 GAME OVER</h2>
+                <p id="finalScore">Pontuação: 0</p>
+                <p id="finalLines">Linhas: 0</p>
+                <p id="finalLevel">Nível: 1</p>
+                <button class="restart-btn" id="restartBtn">JOGAR NOVAMENTE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

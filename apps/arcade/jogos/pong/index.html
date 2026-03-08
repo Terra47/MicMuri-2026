@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🏓 PONG • ARCADE RETRÔ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="pong-game">
+        <div class="game-header">
+            <button class="back-btn" id="backToArcade">← VOLTAR</button>
+            <div class="score-board">
+                <div class="player-score">
+                    <span class="score-label">VOCÊ</span>
+                    <span class="score-value" id="playerScore">0</span>
+                </div>
+                <div class="vs">VS</div>
+                <div class="computer-score">
+                    <span class="score-label">CPU</span>
+                    <span class="score-value" id="computerScore">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="difficulty-selector">
+            <span class="difficulty-label">DIFICULDADE:</span>
+            <button class="difficulty-btn active" data-difficulty="easy">FÁCIL</button>
+            <button class="difficulty-btn" data-difficulty="medium">MÉDIO</button>
+            <button class="difficulty-btn" data-difficulty="hard">DIFÍCIL</button>
+            <button class="difficulty-btn" data-difficulty="expert">EXPERT</button>
+        </div>
+
+        <div class="game-area">
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+            
+            <div class="start-screen" id="startScreen">
+                <div class="start-content">
+                    <h2>🏓 PONG</h2>
+                    <p>Clique em INICIAR para começar</p>
+                    <button class="start-btn" id="startGameBtn">▶ INICIAR JOGO</button>
+                    <div class="controls-info">
+                        <div class="control-item">
+                            <span class="key">▲</span>
+                            <span class="key">▼</span>
+                            <span>Mover raquete</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">R</span>
+                            <span>Reiniciar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pause-screen hidden" id="pauseScreen">
+                <div class="pause-content">
+                    <h2>⏸ PAUSADO</h2>
+                    <p>Pressione ESPAÇO para continuar</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <div class="control-group">
+                <span class="key">▲</span>
+                <span class="key">▼</span>
+                <span>MOVER</span>
+            </div>
+            <div class="control-group">
+                <span class="key">ESPAÇO</span>
+                <span>PAUSAR</span>
+            </div>
+            <div class="control-group">
+                <span class="key">R</span>
+                <span>REINICIAR</span>
+            </div>
+            <button class="action-btn" id="newGameBtn">NOVO JOGO</button>
+            <div class="mobile-controls">
+                <button class="touch-btn" id="touchUp">▲</button>
+                <button class="touch-btn" id="touchDown">▼</button>
+            </div>
+        </div>
+
+        <div class="message-screen hidden" id="gameOverScreen">
+            <div class="message-content">
+                <h2 id="gameOverTitle">FIM DE JOGO</h2>
+                <p id="gameOverMessage"></p>
+                <button class="restart-btn" id="restartBtn">JOGAR NOVAMENTE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

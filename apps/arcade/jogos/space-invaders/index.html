@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>👾 SPACE INVADERS • ARCADE RETRÔ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="space-game">
+        <div class="game-header">
+            <button class="back-btn" id="backToArcade">← VOLTAR</button>
+            <div class="score-board">
+                <span class="score-label">PONTOS</span>
+                <span class="score-value" id="score">0</span>
+            </div>
+            <div class="lives-board">
+                <span class="score-label">VIDAS</span>
+                <span class="score-value" id="lives">3</span>
+            </div>
+            <div class="level-board">
+                <span class="score-label">FASE</span>
+                <span class="score-value" id="level">1</span>
+            </div>
+        </div>
+
+        <div class="difficulty-selector">
+            <span class="difficulty-label">DIFICULDADE:</span>
+            <button class="difficulty-btn active" data-difficulty="easy">😊 FÁCIL</button>
+            <button class="difficulty-btn" data-difficulty="medium">😐 MÉDIO</button>
+            <button class="difficulty-btn" data-difficulty="hard">😰 DIFÍCIL</button>
+            <button class="difficulty-btn" data-difficulty="nightmare">👹 PESADELO</button>
+        </div>
+
+        <div class="game-area">
+            <canvas id="gameCanvas" width="600" height="400"></canvas>
+            
+            <div class="start-screen" id="startScreen">
+                <div class="start-content">
+                    <h2>👾 SPACE INVADERS</h2>
+                    <p>Use ◀ ▶ para mover</p>
+                    <p>Pressione ESPAÇO para atirar</p>
+                    <p>Elimine todos os invasores!</p>
+                    <button class="start-btn" id="startGameBtn">▶ INICIAR JOGO</button>
+                    <div class="controls-info">
+                        <div class="control-item">
+                            <span class="key">◀</span>
+                            <span class="key">▶</span>
+                            <span>Mover</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">ESPAÇO</span>
+                            <span>Atirar</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">R</span>
+                            <span>Reiniciar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pause-screen hidden" id="pauseScreen">
+                <div class="pause-content">
+                    <h2>⏸️ PAUSADO</h2>
+                    <p>Pressione ESPAÇO para continuar</p>
+                </div>
+            </div>
+
+            <div class="level-complete-screen hidden" id="levelCompleteScreen">
+                <div class="level-complete-content">
+                    <h2>🎉 FASE CONCLUÍDA! 🎉</h2>
+                    <p>Prepare-se para a próxima fase!</p>
+                    <p id="nextLevelInfo">FASE <span id="nextLevel">2</span></p>
+                    <button class="continue-btn" id="continueBtn">▶ CONTINUAR</button>
+                </div>
+            </div>
+
+            <div class="victory-screen hidden" id="victoryScreen">
+                <div class="victory-content">
+                    <h2>🏆 VITÓRIA! 🏆</h2>
+                    <p>Você eliminou todos os invasores!</p>
+                    <p id="victoryScore">Pontuação final: 0</p>
+                    <button class="restart-btn" id="victoryRestartBtn">JOGAR NOVAMENTE</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <div class="control-group">
+                <span class="key">◀</span>
+                <span class="key">▶</span>
+                <span>MOVER</span>
+            </div>
+            <div class="control-group">
+                <span class="key">ESPAÇO</span>
+                <span>ATIRAR</span>
+            </div>
+            <div class="control-group">
+                <span class="key">R</span>
+                <span>REINICIAR</span>
+            </div>
+            <button class="action-btn" id="newGameBtn">🔄 NOVO JOGO</button>
+            <div class="mobile-controls">
+                <div class="d-pad-horizontal">
+                    <button class="dpad-btn" id="touchLeft">◀</button>
+                    <button class="dpad-btn" id="touchFire">🔫</button>
+                    <button class="dpad-btn" id="touchRight">▶</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="message-screen hidden" id="gameOverScreen">
+            <div class="message-content">
+                <h2>💀 GAME OVER</h2>
+                <p id="gameOverScore">Pontuação: 0</p>
+                <p id="gameOverLevel">Fase: 1</p>
+                <button class="restart-btn" id="restartBtn">JOGAR NOVAMENTE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
