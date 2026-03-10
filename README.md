@@ -2,6 +2,8 @@
 
 Projeto desenvolvido para a Mostra Científica 2026 do Instituto Murialdo. Simulação interativa de um ambiente Windows 95 com aplicativos funcionais e efeitos CRT.
 
+Link: https://terra47.github.io/MicMuri-2026/
+
 ---
 
 ## Versões
